@@ -5,7 +5,6 @@ This module implements the main factorial calculation logic using
 object-oriented design patterns and optimized algorithms.
 """
 
-
 from factorial_calculator.exceptions import OverflowError
 from factorial_calculator.validator import InputValidator
 

@@ -5,7 +5,6 @@ This module provides validation functionality to ensure input values
 are valid for factorial calculation.
 """
 
-
 from factorial_calculator.exceptions import InvalidInputError
 
 
