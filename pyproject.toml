@@ -1,0 +1,107 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "factorial-calculator"
+version = "1.0.0"
+description = "A robust factorial calculator with CLI interface"
+authors = [{name = "VibeCoding", email = "vibecoding@example.com"}]
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "typing-extensions>=4.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.3",
+    "pytest-cov>=4.1.0",
+    "black>=23.11.0",
+    "ruff>=0.1.6",
+    "mypy>=1.7.1",
+    "bandit>=1.7.5",
+    "pdoc>=14.1.0",
+    "hypothesis>=6.92.1",
+]
+
+[project.scripts]
+factorial = "factorial_calculator.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["factorial_calculator*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py312']
+include = '\.pyi?$'
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+    "UP", # pyupgrade
+]
+ignore = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["factorial_calculator"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+follow_imports = "normal"
+strict_optional = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--cov=factorial_calculator",
+    "--cov-report=html",
+    "--cov-report=term-missing",
+    "--cov-report=xml",
+    "--cov-fail-under=80",
+    "-v",
+]
+
+[tool.coverage.run]
+source = ["factorial_calculator"]
+omit = ["*/tests/*", "*/test_*.py"]
+
+[tool.coverage.report]
+precision = 2
+show_missing = true
+skip_covered = false
+
+[tool.bandit]
+exclude_dirs = ["tests", "docs"]
+tests = ["B201", "B301", "B302", "B303", "B304", "B305", "B306", "B307", "B308", "B309", "B310", "B311", "B312", "B313", "B314", "B315", "B316", "B317", "B318", "B319", "B320", "B321", "B323", "B324", "B325", "B401", "B402", "B403", "B404", "B405", "B406", "B407", "B408", "B409", "B410", "B411", "B412", "B413", "B501", "B502", "B503", "B504", "B505", "B506", "B507", "B601", "B602", "B603", "B604", "B605", "B606", "B607", "B608", "B609", "B610", "B611", "B701", "B702", "B703"]
